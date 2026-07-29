@@ -1,5 +1,5 @@
 # PYNE  
-### *Python Neural Enigmatic Engine*
+### *Python Deep Learning Autograd*
 
 > A minimal neural network engine built from scratch in Python, focused on understanding **backpropagation**, **autograd**, and **tensor-based computation**.
 
