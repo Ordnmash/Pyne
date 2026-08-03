@@ -6,6 +6,7 @@
 ---
 
 ## Overview
+<!-- 1774784081223~2.png -->
 
 **PYNE** is an educational deep learning module inspired by micrograd, but instead of scalar-based computation graphs, it operates directly on **tensors** using object-oriented design.
 
