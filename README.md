@@ -7,6 +7,10 @@
 
 ## Overview
 <!-- 1774784081223~2.png -->
+<p align="center">
+  <img src="1774784081223~2.png" width="800" height="400" alt="tictactoe_Robot">
+</p>
+
 
 **PYNE** is an educational deep learning module inspired by micrograd, but instead of scalar-based computation graphs, it operates directly on **tensors** using object-oriented design.
 
