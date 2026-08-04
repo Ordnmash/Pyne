@@ -18,7 +18,6 @@ The goal is not performance or production use, but:
 - Deep understanding of neural networks
 - Experimentation with new ideas
 - Building intuition for gradient-based learning
-<!-- Simple mindset for debugging NNs-->
 
 ---
 
@@ -32,7 +31,3 @@ The goal is not performance or production use, but:
 - Gradient tracking for all parameters
 - Broadcasting support
 - Modular and extensible architecture
-
----
-
-## Project Structure
