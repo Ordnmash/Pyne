@@ -27,6 +27,7 @@ The goal is not performance or production use, but:
 - Automatic differentiation (backpropagation)
 - Neural network module system (`nn`)
 - Multi-Layer Perceptron (MLP) implementation
+- Deep RNNs
 - Gradient tracking for all parameters
 - Broadcasting support
 - Modular and extensible architecture
