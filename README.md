@@ -28,7 +28,7 @@ The goal is not performance or production use, but:
 - Neural network module system (`nn`)
 - Multi-Layer Perceptron (MLP) implementation
 - Gradient tracking for all parameters
-- Broadcasting support *(in progress)*
+- Broadcasting support
 - Modular and extensible architecture
 
 ---
