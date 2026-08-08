@@ -22,26 +22,31 @@ class pyne:
         
       for i in args:
         vout *= i
+      
       if vout != self.nelem:
         raise ValueError(f"args of {args} doesn't match to shape of {self.shape}")
+      
       else:
         for i in list(reversed(args)):
           j = 0
           li_iterate = [l if l% i == 0 else None for l in range(1, len(storage)+1)]
           nliterate  = []
+          
           for m in li_iterate:
             if m is not None:
               nliterate.append(m)
+          
           istorage = []
+          
           for k in nliterate:
             istorage.append(storage[j:k])
             j=k
     
           storage = istorage
         storage=storage[0]
+        
         return pyne.tensor(storage, self)
 
-    
     def __add__(self, other):
       out = []
       def compatAndExtend(self, other):
@@ -51,7 +56,9 @@ class pyne:
             other = other.todim(self.ndim)
           else:
             self = self.todim(other.ndim)
+        
         shape=[]
+        
         for i in range(self.ndim):
           if self.shape.data[i] == other.shape.data[i]:
             shape.append(self.shape.data[i])
