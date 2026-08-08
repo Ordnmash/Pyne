@@ -109,27 +109,38 @@ class pyne:
         raise ValueError("dim must only be Long int")
         
       nshape = self.shape.data
+      
       ou =[]
+      
       if type(dim) == type(None):
         for i in nshape:
           if i != 1:
             ou.append(i)
+        
         return self.view(ou)
+      
       if type(dim) == tuple or type(dim) == list:
+        
         if max(dim) > len(nshape):
           raise IndexError(f"{self} has no dim '{max(dim)}'")
+        
         else:
           nnshape=nshape
           for i in dim:
             if nshape[i] == 1:
               nnshape.pop(1)
           return self.view(nnshape)
+      
       if type(dim) == int:
+        
         if dim > self.ndim:
           raise IndexError(f"{self} has no dim '{max(dim)}'")
+        
         else:
+          
           if nshape[dim] != 1:
             return self
+          
           else:
             nshape.pop(dim)
             return self.view(nshape)
