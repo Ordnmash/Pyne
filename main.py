@@ -1,6 +1,6 @@
 class pyne:
   def __init__(self):
-    self.ob = 1
+    pass
 
   class tensor:
     def __init__(self,data,orig=None, _prev=()):
