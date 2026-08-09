@@ -68,7 +68,7 @@ class pyne:
               shape.append(g)
             else:
               return
-        return shape
+        return shape # it return shape if the tensors are compatible for element operation!
       
       nshape = compatAndExtend(self, other)
       if not nshape:
