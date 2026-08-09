@@ -89,14 +89,14 @@ class pyne:
       return pyne.tensor(out,_prev=(self, other)).view(nshape)
 
 
-    def todim(self,dim):
+    def todim(self,dim): # stretch tensor to dim...
       change = dim - self.ndim
       out = self.data
       if change <= 0:
         return self
       for _ in range(change):
         out = [out]
-      return pyne.tensor(out, orig=self)
+      return pyne.tensor(out, orig=self) # orig allows backprop from later on!
 
     def squeeze(self,dim=None):
       if type(dim) == pyne.tensor:
