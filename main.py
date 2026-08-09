@@ -171,6 +171,7 @@ class pyne:
           ik     = kernel
           tstack = []
           jdim   = 0
+          
           for i in range(itdim):
             ntensor = pyne.tensor(self.storage[jdim:kernel])
             tstack.append(ntensor)
