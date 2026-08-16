@@ -1,8 +1,10 @@
 class pyne:
+  
   def __init__(self):
     pass
 
   class tensor:
+    
     def __init__(self,data,orig=None, _prev=()):
       self.data = data
       self.shape = pyne.Size.getShape(self.data)
@@ -14,7 +16,7 @@ class pyne:
       
     
     def view(self, *args):
-      vout = 1
+      vout = 1 # this count the number of element for a given shape in *args
       storage = self.storage
       new=[]
       if type(args[0]) == list:
