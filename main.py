@@ -72,7 +72,7 @@ class pyne:
               return
         return shape # it return shape if the tensors are compatible for element operation!
       
-      nshape = compatAndExtend(self, other)
+      nshape = compatAndExtend(self, other) # tensor that doesn't match this shape get stretched
       if not nshape:
         raise ValueError("shapes are incompatible for element-wise operation")
       
