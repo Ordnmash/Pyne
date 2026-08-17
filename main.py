@@ -1,8 +1,7 @@
 class pyne:
-  def __init__(self):
-    self.ob = 1
 
   class tensor:
+    
     def __init__(self,data,orig=None, _prev=()):
       self.data = data
       self.shape = pyne.Size.getShape(self.data)
