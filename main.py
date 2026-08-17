@@ -8,7 +8,7 @@ class pyne:
       self.storage = pyne.storage(self.data)
       self.nelem   = len(self.storage)
       self.ndim    = len(self.shape.data)
-      self.original= orig
+      self.original= orig # for copying of tensor to pass gradients to original tensors
       self._prev   = set(_prev)
       
     
