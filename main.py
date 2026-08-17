@@ -1,3 +1,5 @@
+import math
+
 class pyne:
   
   def __init__(self):
