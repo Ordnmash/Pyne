@@ -1,3 +1,5 @@
+import math
+
 class pyne:
 
   class tensor:
