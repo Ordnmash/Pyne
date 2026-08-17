@@ -1,13 +1,8 @@
-import math
-import random
-
 class pyne:
-  
   def __init__(self):
-    pass
+    self.ob = 1
 
   class tensor:
-    
     def __init__(self,data,orig=None, _prev=()):
       self.data = data
       self.shape = pyne.Size.getShape(self.data)
@@ -19,39 +14,35 @@ class pyne:
       
     
     def view(self, *args):
-      vout = 1 # this count the number of element for a given shape in *args
+      vout = 1
       storage = self.storage
       new=[]
-      if type(args[0]) == list:
+      if type(args[0]) == list or type(args[0]) == tuple:
         args = args[0]
+      elif type(args[0]) == pyne.tensor or type(args[0]) == pyne.Size:
+        args = args[0].data
         
       for i in args:
         vout *= i
-      
       if vout != self.nelem:
         raise ValueError(f"args of {args} doesn't match to shape of {self.shape}")
-      
       else:
         for i in list(reversed(args)):
           j = 0
           li_iterate = [l if l% i == 0 else None for l in range(1, len(storage)+1)]
           nliterate  = []
-          
           for m in li_iterate:
             if m is not None:
               nliterate.append(m)
-          
           istorage = []
-          
           for k in nliterate:
             istorage.append(storage[j:k])
             j=k
     
           storage = istorage
         storage=storage[0]
-        
         return pyne.tensor(storage, self)
-
+    
     def __add__(self, other):
       out = []
       def compatAndExtend(self, other):
@@ -61,9 +52,7 @@ class pyne:
             other = other.todim(self.ndim)
           else:
             self = self.todim(other.ndim)
-        
         shape=[]
-        
         for i in range(self.ndim):
           if self.shape.data[i] == other.shape.data[i]:
             shape.append(self.shape.data[i])
@@ -73,9 +62,9 @@ class pyne:
               shape.append(g)
             else:
               return
-        return shape # it return shape if the tensors are compatible for element operation!
+        return shape
       
-      nshape = compatAndExtend(self, other) # tensor that doesn't match this shape get stretched
+      nshape = compatAndExtend(self, other)
       if not nshape:
         raise ValueError("shapes are incompatible for element-wise operation")
       
@@ -93,15 +82,62 @@ class pyne:
         
       return pyne.tensor(out,_prev=(self, other)).view(nshape)
 
+    def __mul__(self, other):
+      out = []
+      def compatAndExtend(self, other):
+        if self.ndim != other.ndim:
+          #increase the dimensions
+          if self.ndim > other.ndim:
+            other = other.todim(self.ndim)
+          else:
+            self = self.todim(other.ndim)
+        shape=[]
+        for i in range(self.ndim):
+          if self.shape.data[i] == other.shape.data[i]:
+            shape.append(self.shape.data[i])
+          else:
+            if self.shape.data[i] == 1 or other.shape.data[i] == 1:
+              g = self.shape.data[i] if self.shape.data[i] > other.shape.data[i] else other.shape.data[i]
+              shape.append(g)
+            else:
+              return
+        return shape
+      
+      nshape = compatAndExtend(self, other)
+      if not nshape:
+        raise ValueError("shapes are incompatible for element-wise operation")
+      
+      if self.shape.data != nshape:
+        self=pyne.stretch(self,nshape)
+      if other.shape.data != nshape:
+        other=pyne.stretch(other, nshape)
 
-    def todim(self,dim): # stretch tensor to dim...
+      self=self.view(1,self.nelem)
+      other=other.view(1,other.nelem)
+      
+      out = [[]]
+      for i in range(self.shape.data[1]):
+        out[0].append(self.data[0][i] * other.data[0][i])
+        
+      return pyne.tensor(out,_prev=(self, other)).view(nshape)
+
+    def __neg__(self):
+      data = self.storage
+      for i,d in enumerate(data):
+        data[i] = -d
+      return pyne.tensor(data).view(self.shape)
+
+    def __sub__(self, other):
+      return self + (-other)
+    
+    def todim(self,dim):
       change = dim - self.ndim
       out = self.data
       if change <= 0:
         return self
       for _ in range(change):
         out = [out]
-      return pyne.tensor(out, orig=self) # orig allows backprop from later on!
+      return pyne.tensor(out, orig=self)
 
     def squeeze(self,dim=None):
       if type(dim) == pyne.tensor:
@@ -114,38 +150,27 @@ class pyne:
         raise ValueError("dim must only be Long int")
         
       nshape = self.shape.data
-      
       ou =[]
-      
       if type(dim) == type(None):
         for i in nshape:
           if i != 1:
             ou.append(i)
-        
         return self.view(ou)
-      
       if type(dim) == tuple or type(dim) == list:
-        
         if max(dim) > len(nshape):
           raise IndexError(f"{self} has no dim '{max(dim)}'")
-        
         else:
           nnshape=nshape
           for i in dim:
             if nshape[i] == 1:
               nnshape.pop(1)
           return self.view(nnshape)
-      
       if type(dim) == int:
-        
         if dim > self.ndim:
           raise IndexError(f"{self} has no dim '{max(dim)}'")
-        
         else:
-          
           if nshape[dim] != 1:
             return self
-          
           else:
             nshape.pop(dim)
             return self.view(nshape)
@@ -158,53 +183,42 @@ class pyne:
         if keepdim:
           return pyne.tensor(xout).todim(self.ndim)
         else:
-          return pyne.tensor(xout)
+          return pyne.tensor([xout])
       
       if dim > self.ndim:
         raise ValueError(f"tensor of {self.shape} has no dim '{dim}'")
       else:
-        # two-dim sum
-        if self.ndim > 2:
-          shape  = self.shape.data
-          outshp = shape.copy()
-          itdim  = shape.pop(dim)
-          kernel = 1
-          outshp[dim] = 1
-          for j in shape:
-            kernel *= j
-          
-          ik     = kernel
-          tstack = []
-          jdim   = 0
-          
-          for i in range(itdim):
-            ntensor = pyne.tensor(self.storage[jdim:kernel])
-            tstack.append(ntensor)
-            jdim    = kernel
-            kernel += ik
+        pass
 
-          #print(t.shape for t in tstack)
-          outTensor = sum(tstack,start=pyne.tensor(0))
-          return outTensor.view(outshp) if keepdim else outTensor.view(outshp).squeeze(dim)
+    def __getitem__(self, i):
+      self.i = i
+      return self.data[i]
         
     def __repr__(self):
       width = max((len(str(x)) for x in self.storage), default=1)
     
       def format_tensor(obj, level=0):
+    
+        # Scalar
         if not isinstance(obj, list):
           return str(obj).rjust(width)
     
+        # Empty tensor
         if len(obj) == 0:
           return "[]"
-
+    
+        # 1D tensor
         if not isinstance(obj[0], list):
           values = [str(x).rjust(width) for x in obj]
           return "[" + ", ".join(values) + "]"
     
         # Higher-dimensional tensor
         lines = []
+    
         for i, item in enumerate(obj):
+    
           formatted = format_tensor(item, level + 1)
+    
           if i > 0:
             if isinstance(item, list) and len(item) > 0 and isinstance(item[0], list):
               lines.append("\n" * (level + 2))
@@ -221,6 +235,15 @@ class pyne:
         return "[" + "".join(lines) + "]"
     
       return f"pyne.tensor({format_tensor(self.data)})"
+
+  def randint(a:int,b:int, shape: tuple):
+    nelem = 1
+    for k in shape:
+      nelem *= k
+    storage = []
+    for n in range(nelem):
+      storage.append(int(random.uniform(a,b)))
+    return pyne.tensor(storage).view(shape)
 
   
   class Size:
@@ -246,16 +269,23 @@ class pyne:
       iterate(data)
       return pyne.Size(out)
 
+    def __len__(self):
+      shape = self.data
+      nsh   = 1
+      for s in shape:
+        nsh *= s
+      return nsh
+
+    def __getitem__(self,i):
+      return self.data[i]
+
   def stretch(x: pyne.tensor,shape: list):
     if x.ndim != len(shape):
       x = x.todim(len(shape))
-    
     if x.shape.data == shape:
       return x
-    
     count = 0
     storage=x.storage
-    
     for i in list(reversed(x.shape.data)):
       j = 0
       li_iterate = [l if l% i == 0 else None for l in range(1, len(storage)+1)]
@@ -278,7 +308,8 @@ class pyne:
       storage = istorage
     
     storage=storage[0]
-    return pyne.tensor(storage,x)
+    return pyne.tensor(storage,x)  
+    
     
   def storage(x):
     out = []
