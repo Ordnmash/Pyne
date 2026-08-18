@@ -9,7 +9,7 @@ class pyne:
     def __init__(self,data,orig=None, _prev=()):
       self.data = data
       self.shape = pyne.Size.getShape(self.data)
-      self.storage = pyne.storage(self.data)
+      self.storage = pyne.storage(self.data) 
       self.nelem   = len(self.storage) # counts directly on the memory of the tensor
       self.ndim    = len(self.shape.data)
       self.original= orig # for copying of tensor to pass gradients to original tensors
