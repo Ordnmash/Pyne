@@ -206,11 +206,9 @@ class pyne:
         if not isinstance(obj, list):
           return str(obj).rjust(width)
     
-        # Empty tensor
         if len(obj) == 0:
           return "[]"
     
-        # 1D tensor
         if not isinstance(obj[0], list):
           values = [str(x).rjust(width) for x in obj]
           return "[" + ", ".join(values) + "]"
