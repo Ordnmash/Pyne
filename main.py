@@ -286,8 +286,10 @@ class pyne:
       x = x.todim(len(shape))
     if x.shape.data == shape:
       return x
+      
     count = 0
     storage=x.storage
+    
     for i in list(reversed(x.shape.data)):
       j = 0
       li_iterate = [l if l% i == 0 else None for l in range(1, len(storage)+1)]
