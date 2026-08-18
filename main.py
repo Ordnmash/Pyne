@@ -134,6 +134,7 @@ class pyne:
       return self + (-other)
     
     def todim(self,dim):
+      
       change = dim - self.ndim
       out = self.data
       if change <= 0:
