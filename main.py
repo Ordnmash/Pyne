@@ -79,7 +79,7 @@ class pyne:
       self=self.view(1,self.nelem)
       other=other.view(1,other.nelem)
       
-      out = [[]]
+      out = [[]] # this actually for efficiency list(list())
       for i in range(self.shape.data[1]):
         out[0].append(self.data[0][i] + other.data[0][i])
         
