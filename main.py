@@ -246,7 +246,6 @@ class pyne:
       storage.append(int(random.uniform(a,b)))
     return pyne.tensor(storage).view(shape)
 
-  
   class Size:
     def __init__(self,data):
       self.data = data
