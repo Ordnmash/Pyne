@@ -6,8 +6,8 @@ class pyne:
   class tensor:
     
     def __init__(self,data,orig=None, _prev=()):
-      self.data = data
-      self.shape = pyne.Size.getShape(self.data)
+      self.data    = data
+      self.shape   = pyne.Size.getShape(self.data)
       self.storage = pyne.storage(self.data) 
       self.nelem   = len(self.storage) # counts directly on the memory of the tensor
       self.ndim    = len(self.shape.data)
@@ -16,9 +16,9 @@ class pyne:
       
     
     def view(self, *args):
-      vout = 1
+      vout    = 1
       storage = self.storage
-      new=[]
+      new     = []
       if type(args[0]) == list or type(args[0]) == tuple:
         args = args[0]
       elif type(args[0]) == pyne.tensor or type(args[0]) == pyne.Size:
