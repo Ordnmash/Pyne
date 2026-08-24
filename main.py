@@ -129,10 +129,11 @@ class pyne:
         data[i] = -d
       return pyne.tensor(data).view(self.shape)
 
-    def __sub__(self, other):
+    def __sub__(self, other: pyne.tensor):
+      other = other if isinstance(other, pyne.tensor) else pyne.tensor(other)
       return self + (-other)
     
-    def todim(self,dim):
+    def todim(self,dim: int):
       
       change = dim - self.ndim
       out = self.data
