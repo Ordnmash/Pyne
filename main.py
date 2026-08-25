@@ -316,7 +316,7 @@ class pyne:
     
   def storage(x):
     out = []
-    if not type(x) == list:
+    if type(x) != list:
       return [x]
     data = x
     def iterate(data):
