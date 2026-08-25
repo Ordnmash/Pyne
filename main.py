@@ -14,7 +14,6 @@ class pyne:
       self.original= orig # for copying of tensor to pass gradients to original tensors
       self._prev   = set(_prev)
       
-    
     def view(self, *args):
       vout    = 1
       storage = self.storage
@@ -28,6 +27,7 @@ class pyne:
         vout *= i
       if vout != self.nelem:
         raise ValueError(f"args of {args} doesn't match to shape of {self.shape}")
+      
       else:
         for i in list(reversed(args)):
           j = 0
