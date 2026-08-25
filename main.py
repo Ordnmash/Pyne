@@ -18,7 +18,7 @@ class pyne:
     def view(self, *args):
       vout    = 1
       storage = self.storage
-      new     = []
+      
       if type(args[0]) == list or type(args[0]) == tuple:
         args = args[0]
       elif type(args[0]) == pyne.tensor or type(args[0]) == pyne.Size:
