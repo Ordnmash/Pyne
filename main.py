@@ -315,11 +315,11 @@ class pyne:
     
     
   def storage(x):
-    out = []
     if type(x) != list:
       return [x]
     data = x
     def iterate(data: list):
+      out = []
       for i in data:
         if type(i) == list:
           iterate(i)
@@ -327,6 +327,7 @@ class pyne:
           for j in data:
             out.append(j)
           break
+      return out
     
-    iterate(data)
+    out = iterate(data)
     return out
