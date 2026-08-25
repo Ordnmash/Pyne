@@ -1,9 +1,7 @@
 # PYNE  
 ### *Python Deep Learning Autograd*
 
-> A minimal neural network engine built from scratch in Python, focused on understanding **backpropagation**, **autograd**, and **tensor-based computation**.
-
----
+> A simple Deep learning Autograd engine in the level of tensors.
 
 ## Overview
 <!-- 1774784081223~2.png -->
