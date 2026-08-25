@@ -84,7 +84,7 @@ class pyne:
         
       return pyne.tensor(out,_prev=(self, other)).view(nshape)
 
-    def __mul__(self, other):
+    def __mul__(self, other: pyne.tensor):
       out = []
       def compatAndExtend(self, other):
         if self.ndim != other.ndim:
@@ -248,13 +248,13 @@ class pyne:
     return pyne.tensor(storage).view(shape)
 
   class Size:
-    def __init__(self,data):
+    def __init__(self,data: list):
       self.data = data
       
     def __repr__(self):
       return f"pyne.Size({self.data})"
     
-    def getShape(data):
+    def getShape(data: list):
       out = []
       if type(data) == int or type(data) == float:
         return pyne.Size([])
@@ -277,7 +277,7 @@ class pyne:
         nsh *= s
       return nsh
 
-    def __getitem__(self,i):
+    def __getitem__(self,i: int):
       return self.data[i]
 
   def stretch(x: pyne.tensor,shape: list):
@@ -319,7 +319,7 @@ class pyne:
     if type(x) != list:
       return [x]
     data = x
-    def iterate(data):
+    def iterate(data: list):
       for i in data:
         if type(i) == list:
           iterate(i)
