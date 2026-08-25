@@ -4,7 +4,6 @@ import random
 class pyne:
 
   class tensor:
-    
     def __init__(self,data,orig=None, _prev=()):
       self.data    = data
       self.shape   = pyne.Size.getShape(self.data)
@@ -54,6 +53,7 @@ class pyne:
             other = other.todim(self.ndim)
           else:
             self = self.todim(other.ndim)
+        
         shape=[]
         for i in range(self.ndim):
           if self.shape.data[i] == other.shape.data[i]:
