@@ -77,7 +77,7 @@ class pyne:
       self=self.view(1,self.nelem)
       other=other.view(1,other.nelem)
       
-      out = [[]] # this actually for efficiency list(list())
+      out = [[]]
       for i in range(self.shape.data[1]):
         out[0].append(self.data[0][i] + other.data[0][i])
         
@@ -201,8 +201,7 @@ class pyne:
       width = max((len(str(x)) for x in self.storage), default=1)
     
       def format_tensor(obj, level=0):
-    
-        # Scalar
+
         if not isinstance(obj, list):
           return str(obj).rjust(width)
     
