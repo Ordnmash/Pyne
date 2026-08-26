@@ -224,9 +224,7 @@ class pyne:
               lines.append("\n" * (level + 2))
             else:
               lines.append("\n")
-    
             lines.append(" " * (len("pyne.tensor(") + level))
-    
           lines.append(formatted)
     
           if i != len(obj) - 1:
@@ -310,7 +308,6 @@ class pyne:
     
     storage=storage[0]
     return pyne.tensor(storage,x)  
-    
     
   def storage(x):
     if type(x) != list:
