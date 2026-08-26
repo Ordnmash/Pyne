@@ -145,7 +145,7 @@ class pyne:
     def squeeze(self,dim=None):
       if type(dim) == pyne.tensor:
         if dim.ndim != 1:
-          raise ValueError("dim passed as pyne.tensor should be 1 dimensional")
+          raise ValueError("dim passed as pyne.tensor must be 1 dimensional")
         else:
           dim = dim.data
       
