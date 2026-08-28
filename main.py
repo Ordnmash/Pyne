@@ -267,6 +267,7 @@ class pyne:
       return pyne.Size(out)
 
     def __len__(self):
+      
       shape = self.data
       nsh   = 1
       for s in shape:
@@ -310,6 +311,7 @@ class pyne:
     return pyne.tensor(storage,x)  
     
   def storage(x):
+    
     if type(x) != list:
       return [x]
     data = x
