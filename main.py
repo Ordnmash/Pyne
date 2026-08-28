@@ -21,7 +21,7 @@ class pyne:
       elif type(args[0]) == pyne.tensor or type(args[0]) == pyne.Size:
         args = args[0].data
         
-      for i in args:
+      for i in args: 
         vout *= i
       if vout != self.nelem:
         raise ValueError(f"args of {args} doesn't match to shape of {self.shape}")
