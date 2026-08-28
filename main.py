@@ -12,7 +12,7 @@ class pyne:
       self.original= orig # for copying of tensor to pass gradients to original tensors
       self._prev   = set(_prev)
       
-    def view(self, *args):
+    def view(self, *args): --> pyne.tensor
       vout    = 1
       storage = self.storage
       
