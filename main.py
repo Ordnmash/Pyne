@@ -43,7 +43,7 @@ class pyne:
         storage=storage[0]
         return pyne.tensor(storage, self)
     
-    def __add__(self, other: pyne.tensor):
+    def __add__(self, other: pyne.tensor): --> pyne.tensor
       out = []
       def compatAndExtend(self, other):
         if self.ndim != other.ndim:
