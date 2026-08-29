@@ -138,8 +138,10 @@ class pyne:
       out = self.data
       if change <= 0:
         return self
+        
       for _ in range(change):
         out = [out]
+      
       return pyne.tensor(out, orig=self)
 
     def squeeze(self,dim=None):
