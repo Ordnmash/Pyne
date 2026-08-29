@@ -159,6 +159,7 @@ class pyne:
           if i != 1:
             ou.append(i)
         return self.view(ou)
+        
       if type(dim) == tuple or type(dim) == list:
         if max(dim) > len(nshape):
           raise IndexError(f"{self} has no dim '{max(dim)}'")
@@ -168,6 +169,7 @@ class pyne:
             if nshape[i] == 1:
               nnshape.pop(1)
           return self.view(nnshape)
+      
       if type(dim) == int:
         if dim > self.ndim:
           raise IndexError(f"{self} has no dim '{max(dim)}'")
