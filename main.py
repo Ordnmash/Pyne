@@ -87,11 +87,11 @@ class pyne:
       out = []
       def compatAndExtend(self, other):
         if self.ndim != other.ndim:
-          #increase the dimensions
           if self.ndim > other.ndim:
             other = other.todim(self.ndim)
           else:
             self = self.todim(other.ndim)
+        
         shape=[]
         for i in range(self.ndim):
           if self.shape.data[i] == other.shape.data[i]:
