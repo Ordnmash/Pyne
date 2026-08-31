@@ -319,7 +319,7 @@ class pyne:
     
     if type(x) != list:
       return [x]
-    data = x
+  
     def iterate(data: list):
       out = []
       for i in data:
@@ -331,5 +331,5 @@ class pyne:
           break
       return out
     
-    out = iterate(data)
+    out = iterate(x)
     return out
