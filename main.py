@@ -131,9 +131,9 @@ class pyne:
 
     def __sub__(self, other: pyne.tensor):
       other = other if isinstance(other, pyne.tensor) else pyne.tensor(other)
-      return self + (-other) # do the calculation at __add__ function to save compute
+      return self + (-other) # hands calculation to __add__
     
-    def todim(self,dim: int):
+    def todim(self,dim: int): --> pyne.tensor
       
       change = dim - self.ndim
       out = self.data
@@ -142,7 +142,6 @@ class pyne:
         
       for _ in range(change):
         out = [out]
-      
       return pyne.tensor(out, orig=self)
 
     def squeeze(self,dim=None):
