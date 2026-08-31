@@ -131,7 +131,7 @@ class pyne:
 
     def __sub__(self, other: pyne.tensor):
       other = other if isinstance(other, pyne.tensor) else pyne.tensor(other)
-      return self + (-other)
+      return self + (-other) # do the calculation at __add__ function to save compute
     
     def todim(self,dim: int):
       
