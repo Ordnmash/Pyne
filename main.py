@@ -34,6 +34,7 @@ class pyne:
           for m in li_iterate:
             if m is not None:
               nliterate.append(m)
+              
           istorage = []
           for k in nliterate:
             istorage.append(storage[j:k])
