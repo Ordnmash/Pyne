@@ -220,7 +220,6 @@ class pyne:
         lines = []
     
         for i, item in enumerate(obj):
-    
           formatted = format_tensor(item, level + 1)
     
           if i > 0:
