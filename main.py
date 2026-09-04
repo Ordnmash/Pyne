@@ -17,7 +17,7 @@ class pyne:
       storage = self.storage
       shape   = []
       if isinstance(args[0], int): shape = list(args)
-      if type(args[0]) == list or type(args[0]) == tuple:
+      if isinstance(args[0], list) or isinstance(args[0], tuple):
         shape = args[0]
       elif type(args[0]) == pyne.tensor or type(args[0]) == pyne.Size:
         shape = args[0].data
