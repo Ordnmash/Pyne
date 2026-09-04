@@ -283,7 +283,7 @@ class pyne:
 
   def stretch(x: pyne.tensor,shape: list):
     if x.ndim != len(shape):
-      x = x.todim(len(shape))
+      return x.todim(len(shape))
     if x.shape.data == shape:
       return x
       
