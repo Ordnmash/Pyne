@@ -15,11 +15,12 @@ class pyne:
     def view(self, *args):
       vout    = 1
       storage = self.storage
-      
+      shape   = []
+      if isinstance(args[0], int): shape = list(args)
       if type(args[0]) == list or type(args[0]) == tuple:
-        args = args[0]
+        shape = args[0]
       elif type(args[0]) == pyne.tensor or type(args[0]) == pyne.Size:
-        args = args[0].data
+        shape = args[0].data
         
       for i in args: 
         vout *= i
