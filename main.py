@@ -22,13 +22,12 @@ class pyne:
       elif type(args[0]) == pyne.tensor or type(args[0]) == pyne.Size:
         shape = args[0].data
         
-      for i in args: 
+      for i in shape: 
         vout *= i
       if vout != self.nelem:
-        raise ValueError(f"args of {args} doesn't match to shape of {self.shape}")
-      
+        raise ValueError(f"args of {shape} doesn't match to shape of {self.shape}")
       else:
-        for i in list(reversed(args)):
+        for i in list(reversed(shape)):
           j = 0
           li_iterate = [l if l% i == 0 else None for l in range(1, len(storage)+1)]
           nliterate  = []
