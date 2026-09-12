@@ -1,7 +1,6 @@
 import random
 
 class pyne:
-
   class tensor:
     def __init__(self,data,orig=None, _prev=()):
       self.data    = data
@@ -266,6 +265,7 @@ class pyne:
             break
           else:
             return
+            
       iterate(data)
       return pyne.Size(out)
 
