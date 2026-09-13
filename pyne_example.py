@@ -1,4 +1,4 @@
-a = pyne.tensor([[2,3,1,4],[3,2,1,4]])
+a = pyne.tensor([[2,3,1,4],[3,2,1,4]], requires_grad=True)
 b = pyne.tensor([2,2,3,3])
 c = a + b 
 d = c * 4 # tensor * int
