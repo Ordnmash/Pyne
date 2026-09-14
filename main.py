@@ -94,8 +94,10 @@ class pyne:
         
         shape=[]
         for i in range(self.ndim):
+          
           if self.shape.data[i] == other.shape.data[i]:
             shape.append(self.shape.data[i])
+          
           else:
             if self.shape.data[i] == 1 or other.shape.data[i] == 1:
               g = self.shape.data[i] if self.shape.data[i] > other.shape.data[i] else other.shape.data[i]
