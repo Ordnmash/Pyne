@@ -8,7 +8,7 @@ class pyne:
       self.storage = pyne.storage(self.data) 
       self.nelem   = len(self.storage) # counts directly on the memory of the tensor
       self.ndim    = len(self.shape.data)
-      self.original= orig # for copying of tensor to pass gradients to original tensors
+      self.original= orig
       self._prev   = set(_prev)
       
     def view(self, *args):
@@ -175,7 +175,7 @@ class pyne:
       
       if type(dim) == int:
         if dim > self.ndim:
-          raise IndexError(f"{self} has no dim '{max(dim)}'")
+          raise IndexError(f"{self} has no dim '{dim}'")
         else:
           if nshape[dim] != 1:
             return self
