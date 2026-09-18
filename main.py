@@ -11,7 +11,7 @@ class pyne:
       self.original= orig
       self._prev   = set(_prev)
       
-    def view(self, *args):
+    def view(self, *args) -> pyne.tensor:
       vout    = 1
       storage = self.storage
       shape   = []
@@ -43,7 +43,7 @@ class pyne:
         storage=storage[0]
         return pyne.tensor(storage, self)
     
-    def __add__(self, other: pyne.tensor):
+    def __add__(self, other: pyne.tensor) -> pyne.tensor:
       out = []
       def compatAndExtend(self, other):
         if self.ndim != other.ndim:
@@ -83,7 +83,7 @@ class pyne:
         
       return pyne.tensor(out,_prev=(self, other)).view(nshape)
 
-    def __mul__(self, other: pyne.tensor):
+    def __mul__(self, other: pyne.tensor) -> pyne.tensor:
       out = []
       def compatAndExtend(self, other):
         if self.ndim != other.ndim:
