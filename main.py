@@ -124,13 +124,13 @@ class pyne:
         
       return pyne.tensor(out,_prev=(self, other)).view(nshape)
 
-    def __neg__(self):
+    def __neg__(self) -> pyne.tensor:
       data = self.storage
       for i,d in enumerate(data):
         data[i] = -d
       return pyne.tensor(data).view(self.shape)
 
-    def __sub__(self, other: pyne.tensor):
+    def __sub__(self, other: pyne.tensor) -> pyne.tensor:
       other = other if isinstance(other, pyne.tensor) else pyne.tensor(other)
       return self + (-other) # hands calculation to __add__
     
