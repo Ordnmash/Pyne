@@ -282,7 +282,7 @@ class pyne:
     def __getitem__(self,i: int):
       return self.data[i]
 
-  def stretch(x: pyne.tensor,shape: list):
+  def stretch(x: pyne.tensor,shape: list) -> pyne.tensor:
     if x.ndim != len(shape):
       return x.todim(len(shape))
     if x.shape.data == shape:
@@ -315,7 +315,7 @@ class pyne:
     storage=storage[0]
     return pyne.tensor(storage,x)  
     
-  def storage(x):
+  def storage(x) -> list:
     
     if type(x) != list:
       return [x]
