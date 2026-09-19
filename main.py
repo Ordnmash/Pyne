@@ -202,7 +202,7 @@ class pyne:
       self.i = i
       return self.data[i]
         
-    def __repr__(self):
+    def __repr__(self) -> str:
       width = max((len(str(x)) for x in self.storage), default=1)
     
       def format_tensor(obj, level=0):
@@ -238,7 +238,7 @@ class pyne:
     
       return f"pyne.tensor({format_tensor(self.data)})"
 
-  def randint(a:int,b:int, shape: tuple):
+  def randint(a:int,b:int, shape: tuple) -> pyne.tensor:
     nelem = 1
     for k in shape:
       nelem *= k
@@ -254,7 +254,7 @@ class pyne:
     def __repr__(self):
       return f"pyne.Size({self.data})"
     
-    def getShape(data: list):
+    def getShape(data: list) -> pyne.size:
       out = []
       if type(data) == int or type(data) == float:
         return pyne.Size([])
@@ -315,8 +315,7 @@ class pyne:
     storage=storage[0]
     return pyne.tensor(storage,x)  
     
-  def storage(x) -> list:
-    
+  def storage(x) -> list:    
     if type(x) != list:
       return [x]
   
