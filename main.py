@@ -182,8 +182,8 @@ class pyne:
           else:
             nshape.pop(dim)
             return self.view(nshape)
-
-      raise ValueError(f"Unsupported argument of type '{type(dim)}'")
+      else:
+        raise ValueError(f"Unsupported argument of type '{type(dim)}'")
 
     def sum(self, dim=None, keepdim=False):
       if dim == None:
