@@ -135,7 +135,6 @@ class pyne:
       return self + (-other) # hands calculation to __add__
     
     def todim(self,dim: int): --> pyne.tensor
-      
       change = dim - self.ndim
       out = self.data
       if change <= 0:
@@ -300,7 +299,6 @@ class pyne:
           nliterate.append(m)
       istorage = []
       rshape   = list(reversed(shape))
-      
       for k in nliterate:
         sjk = storage[j:k]
         if len(sjk) != rshape[count]:
