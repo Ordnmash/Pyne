@@ -190,7 +190,7 @@ class pyne:
         if keepdim:
           return pyne.tensor(xout).todim(self.ndim)
         else:
-          return pyne.tensor([xout])
+          return pyne.tensor(xout)
       
       if dim > self.ndim:
         raise ValueError(f"tensor of {self.shape} has no dim '{dim}'")
