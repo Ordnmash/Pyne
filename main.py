@@ -345,3 +345,10 @@ class pyne:
   
     def __repr__(self):
       return f"pyne.long"
+
+  class Bool:
+    def __init__(self):
+      self.type = 'bool'
+  
+    def __repr__(self):
+      return f"pyne.bool"
