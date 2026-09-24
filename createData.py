@@ -5,7 +5,7 @@ from size.Size import Size
 
 """ this function is used at init of new tensor for data type handling """
 def crData(x: any, dtype='float'):
-  print(f"dtype passed is {dtype}")
+  """ dtype passed as dtype object """
   if isinstance(dtype,dtypes.Float):
     dtype = dtype.type
   if isinstance(dtype, dtypes.Long):
