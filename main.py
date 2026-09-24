@@ -330,3 +330,11 @@ class pyne:
     
     out = iterate(x)
     return out
+
+  """data types for tensor object!"""
+  class Float:
+    def __init__(self):
+      self.type = 'float'
+  
+    def __repr__(self):
+      return f"pyne.float"
