@@ -3,6 +3,7 @@ from methods.storage import storage
 from methods.cheatView import cheatView as cv
 from size.Size import Size
 
+""" this function is used at init of new tensor for data type handling """
 def crData(x: any, dtype='float'):
   print(f"dtype passed is {dtype}")
   if isinstance(dtype,dtypes.Float):
@@ -11,7 +12,6 @@ def crData(x: any, dtype='float'):
     dtype = dtype.type
   if isinstance(dtype, dtypes.Bool):
     dtype = dtype.type
-
 
   if dtype == 'float':
     if isinstance(x, float) or isinstance(x, int):
