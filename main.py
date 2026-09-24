@@ -338,3 +338,10 @@ class pyne:
   
     def __repr__(self):
       return f"pyne.float"
+
+  class Long:
+    def __init__(self):
+      self.type = 'long'
+  
+    def __repr__(self):
+      return f"pyne.long"
