@@ -331,7 +331,7 @@ class pyne:
     out = iterate(x)
     return out
     
-  def arange(start, end, step=1) -> tensor:
+  def arange(start, end, step=1) -> pyne.tensor:
     if step == 0.0:
       raise ValueError(f"step cannot be zero!!!")
     if start > end and step > 0:
@@ -354,7 +354,7 @@ class pyne:
         ist+=step
         out.append(ist)
         
-    return tensor(out, dtype='float')
+    return pyne.tensor(out, dtype='float')
 
   """data types for tensor object!"""
   class Float:
