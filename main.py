@@ -341,7 +341,7 @@ class pyne:
     # 
     epochs = end - start
     if epochs % step != 0:
-      raise ValueError(f"invalid step argument, {step} is not divisible for end - start.")
+      raise ValueError(f"invalid step argument, end - start not divisible by {step}")
     out = []
     if step > 0:
       ist = start-step
