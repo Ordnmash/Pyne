@@ -127,7 +127,7 @@ class pyne:
     def __neg__(self) -> pyne.tensor:
       data = self.storage
       for i,d in enumerate(data):
-        data[i] = -d
+        data[i] = (-d)
       return pyne.tensor(data).view(self.shape)
 
     def __sub__(self, other: pyne.tensor) -> pyne.tensor:
