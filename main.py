@@ -356,7 +356,6 @@ class pyne:
         
     return pyne.tensor(out, dtype='float')
 
-  """data types for tensor object!"""
   class Float:
     def __init__(self):
       self.type = 'float'
