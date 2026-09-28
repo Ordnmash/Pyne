@@ -66,6 +66,7 @@ class pyne:
         return shape
       
       nshape = compatAndExtend(self, other)
+      
       if not nshape:
         raise ValueError("shapes are incompatible for element-wise operation")
       
