@@ -6,7 +6,7 @@ class pyne:
       self.data    = data
       self.shape   = pyne.Size.getShape(self.data)
       self.storage = pyne.storage(self.data) 
-      self.nelem   = len(self.storage) # counts directly on the memory of the tensor
+      self.nelem   = len(self.storage)
       self.ndim    = len(self.shape.data)
       self.original= orig
       self._prev   = set(_prev)
