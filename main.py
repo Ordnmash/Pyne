@@ -364,6 +364,9 @@ class pyne:
     def __repr__(self):
       return f"pyne.float"
 
+  def __eq__(self):
+    return self.type
+
   class Long:
     def __init__(self):
       self.type = 'long'
@@ -371,9 +374,15 @@ class pyne:
     def __repr__(self):
       return f"pyne.long"
 
+    def __eq__(self):
+      return self.type
+
   class Bool:
     def __init__(self):
       self.type = 'bool'
   
     def __repr__(self):
       return f"pyne.bool"
+    
+    def __eq__(self):
+      return self.type
