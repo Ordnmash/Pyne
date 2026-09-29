@@ -4,6 +4,17 @@ from methods.cheatView import cheatView as cv
 from size.Size import Size
 
 def crData(x: any, dtype='float'):
+  if isinstance(dtype,dtypes.Float):
+    dtype = dtype.type
+  if isinstance(dtype, dtypes.Long):
+    dtype = dtype.type
+  if isinstance(dtype, dtypes.Bool):
+    dtype = dtype.type
+
+  # simple hack incase if dtypes.TYPE get ignored!
+  if not isinstance(dtype, str):
+    dtype = dtype.type
+
   if dtype == 'float':
     if isinstance(x, float) or isinstance(x, int):
       return float(x)
