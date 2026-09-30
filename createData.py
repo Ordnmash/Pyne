@@ -5,8 +5,7 @@ from size.Size import Size
 
 def crData(x: any, dtype='float'):
   if dtype == 'float':
-    if isinstance(x, float) or isinstance(x, int):
-      return float(x)
+    if isinstance(x, float) or isinstance(x, int): return float(x)
     
     elif isinstance(x, list):
       shape = Size(x).data
