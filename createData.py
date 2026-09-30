@@ -14,8 +14,7 @@ def crData(x: any, dtype='float'):
       return x
 
   if dtype == 'long':
-      if isinstance(x, float) or isinstance(x, int):
-        return int(x)
+      if isinstance(x, float) or isinstance(x, int): return int(x)
       
       elif isinstance(x, list):
         shape = Size(x).data
