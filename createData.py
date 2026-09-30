@@ -23,8 +23,7 @@ def crData(x: any, dtype='float'):
         return x
 
   if dtype == 'bool':
-    if isinstance(x, float) or isinstance(x, int):
-      return bool(x)
+    if isinstance(x, float) or isinstance(x, int): return bool(x)
     
     elif isinstance(x, list):
       shape = Size(x).data
