@@ -135,7 +135,7 @@ class pyne:
       other = other if isinstance(other, pyne.tensor) else pyne.tensor(other)
       return self + (-other) # hands calculation to __add__
     
-    def todim(self,dim: int): --> pyne.tensor
+    def todim(self,dim: int)-> pyne.tensor:
       change = dim - self.ndim
       out = self.data
       if change <= 0:
