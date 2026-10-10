@@ -9,6 +9,7 @@ class Float:
     return f"pyne.float"
 
   def __eq__(self):
+    # ==
     return self.type
 
 class Long:
