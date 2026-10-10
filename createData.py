@@ -1,5 +1,4 @@
 import dtypes
-
 from methods.storage import storage
 from methods.cheatView import cheatView as cv
 from size.Size import Size
