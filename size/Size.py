@@ -1,7 +1,7 @@
 class Size:
-  def __init__(self,x: list):
+  def __init__(self,x: list,isshape=False):
     self.x    = x
-    self.data = self.getShape()
+    self.data = self.getShape() if not isshape else list(x)
     self.ndim = len(self.data)
     self.nelem = self.getnelem()
     

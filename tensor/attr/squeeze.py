@@ -2,10 +2,10 @@ from tensor.main import tensor
 
 def squeeze(self,dim=None) -> tensor:
   if isinstance(dim, tensor):
-    if dim.ndim != 1:
+    if dim.ndim > 1:
       raise ValueError("dim passed as pyne.tensor must be 1 dimensional")
     else:
-      dim = dim.data
+      dim = dim.item()
   
   if isinstance(dim, float):
     raise ValueError("dim must only be Long int")
@@ -14,8 +14,7 @@ def squeeze(self,dim=None) -> tensor:
   ou =[]
   if dim == None:
     for i in nshape:
-      if i != 1:
-        ou.append(i)
+      if i != 1: ou.append(i)
     return self.view(ou)
     
   if isinstance(dim, tuple) or isinstance(dim, list):

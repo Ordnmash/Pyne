@@ -1,6 +1,6 @@
 from tensor.main import tensor
 
-def transpose(self, dim: tuple|None):
+def transpose(self, dim: int|tuple|None):
   # if dim is empty/None reverse dims.
   dimDict = {}
   def unpack(data, dim:int):

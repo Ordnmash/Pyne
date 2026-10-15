@@ -17,5 +17,5 @@ def getStride(shape:list, dim:int) -> int:
 
 def item(self):
   if self.nelem > 1:
-    raise ValueError(f"item() can't be used for tensor with more than one elements.")
+    raise ValueError(f"tensor with n-elements > 1, can't be converted to scalar!")
   return self.storage[0]

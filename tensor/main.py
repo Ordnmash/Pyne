@@ -8,16 +8,16 @@ class tensor:
   __repr__ = repr
   strides  = strides
 
-  def __init__(self, data, dtype='float', _prev=()):
+  def __init__(self, data, dtype='float', _prev=(),_Strg=None):
     self.dtype   = dtype
     self.data    = crd(data,self.dtype)
-    self.prev    = set(_prev)
+    self.children= set(_prev)
     from main import pyne
     from size.Size import Size
     self.shape   = Size(self.data)
     self.ndim    = self.shape.ndim
     self.nelem   = self.shape.nelem
-    self.storage = pyne.storage(self.data)
+    self.storage = pyne.storage(self.data) if not _Strg else _Strg 
     
 
 
