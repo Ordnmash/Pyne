@@ -1,10 +1,8 @@
 def compatAndExtend(x, y):
+  
   if x.ndim != y.ndim:
-    #increase the dimensions
-    if x.ndim > y.ndim:
-      y = y.todim(x.ndim)
-    else:
-      x = x.todim(y.ndim)
+    if x.ndim > y.ndim: y = y.todim(x.ndim)
+    else:               x = x.todim(y.ndim)
   
   shape=[]
   for i in range(x.ndim):

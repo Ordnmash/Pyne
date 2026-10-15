@@ -5,7 +5,7 @@ import time
 print("...Pyne...\n")
 
 t0 = time.perf_counter()
-a1 = pyne.randint(1, 5, (20000,))
+a1 = pyne.ones((2,5000,2), pyne.Float)
 a  = a1.view((2,5000,2))
 
 t1 = time.perf_counter()

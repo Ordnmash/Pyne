@@ -4,7 +4,7 @@ from methods.stretch import stretch
 
 
 def pow(self, other: tensor) -> tensor:
-  other = other if isinstance(other, tensor) else tensor(other, 'float')
+  other = other if isinstance(other, tensor) else tensor(other, self.dtype,_Strg=[other],_Shape=[1])
   dtype = 'long' if self.dtype == 'long' and other.dtype == 'long' else 'float'
   if not self.ndim and not other.ndim:
     out = self.data ** other.data

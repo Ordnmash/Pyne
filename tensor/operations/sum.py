@@ -3,10 +3,9 @@ from tensor.main import tensor
 def Sum(self, dim=None, keepdim=False):
   if dim is None:
     out = [sum(self.storage)]
-    if keepdim:
-      return tensor(out, self.dtype, (self,)).todim(self.ndim)
-    else:
-      return tensor(out, self.dtype, (self,))
+    if keepdim: 
+          return tensor(out, self.dtype, (self,), _Strg=out.copy(), _Shape=[len(out)]).todim(self.ndim)
+    else: return tensor(out, self.dtype, (self,), _Strg=out.copy(), _Shape=[len(out)])
   
   if dim >= self.ndim:
     raise IndexError(f"tensor of {self.ndim}dims has no dim '{dim}'")
@@ -31,5 +30,5 @@ def Sum(self, dim=None, keepdim=False):
     if (o + 1) % step == 0: # jump in memory when outer iterate reaches steps
       base += (inner * step) - step
 
-  outtens = tensor(out,self.dtype, (self,)).view(outshape)
+  outtens = tensor(out,self.dtype, (self,), _Strg=out.copy(), _Shape=[len(out)]).view(outshape)
   return outtens if keepdim else outtens.squeeze(dim)

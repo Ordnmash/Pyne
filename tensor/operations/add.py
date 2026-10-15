@@ -4,24 +4,23 @@ from tensor.operations.compatExtend import compatAndExtend as cae
 
 
 def add(self, other: tensor) -> tensor:
-  other = other if isinstance(other, tensor) else tensor(other, self.dtype)
-  out = []
-  dtype = 'float' if not self.dtype == 'long' and not other.dtype == 'long' else 'long'
   
+  other  = other if isinstance(other, tensor) else tensor(other, self.dtype, _Strg=other)
+  out    = []
+  dtype  = 'float' if not self.dtype == 'long' and not other.dtype == 'long' else 'long'
   nshape = cae(self, other)
+  
   if not nshape:
     raise ValueError("shapes are incompatible for element-wise operation")
   
-  if self.shape.data != nshape:
-    self=stretch(self,nshape)
-  if other.shape.data != nshape:
-    other=stretch(other, nshape)
+  if self .shape.data != nshape: self =stretch(self, nshape)
+  if other.shape.data != nshape: other=stretch(other,nshape)
 
-  self=self.view(1,self.nelem)
-  other=other.view(1,other.nelem)
+  self=self.view(self.nelem)
+  other=other.view(other.nelem)
   
-  out = [[]]
-  for i in range(self.shape.data[1]):
-    out[0].append(self.data[0][i] + other.data[0][i])
+  out = []
+  for i in range(self.nelem):
+    out.append(self.storage[i] + other.storage[i])
     
-  return tensor(out,dtype=dtype, _prev=(self, other)).view(nshape)
+  return tensor(out,dtype=dtype, _prev=(self, other), _Strg=out.copy()).view(nshape)
