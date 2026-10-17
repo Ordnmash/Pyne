@@ -1,7 +1,7 @@
 from tensor.main import tensor
 import random
 
-def randn(shape: tuple):
+def randn(shape: list|tuple) -> tensor:
   n = 1
   for s in shape: n*=s
   
@@ -10,7 +10,7 @@ def randn(shape: tuple):
   norm = (ts - ts.mean(-1, True)) / ts.std(-1, True)
   return norm
 
-def randNorm(shape: tuple):
+def randNorm(shape: tuple) -> tensor:
   a,b = -(shape[-1]**0.5), (shape[-1]**0.5)
   alld = 1
   for s in shape:

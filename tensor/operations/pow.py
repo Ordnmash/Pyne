@@ -4,8 +4,10 @@ from methods.stretch import stretch
 
 
 def pow(self, other: tensor) -> tensor:
-  other = other if isinstance(other, tensor) else tensor(other, self.dtype,_Strg=[other],_Shape=[1])
+  
+  other = other if isinstance(other, tensor) else tensor(other, self.dtype,_Strg=[other],_Shape=[])
   dtype = 'long' if self.dtype == 'long' and other.dtype == 'long' else 'float'
+  
   if not self.ndim and not other.ndim:
     out = self.data ** other.data
     return tensor(out,dtype, (self, other))
@@ -19,8 +21,8 @@ def pow(self, other: tensor) -> tensor:
   if other.shape.data != nshape:
     other=stretch(other, nshape)
 
-  data  = self .storage
-  odata = other.storage
-  for i,d in enumerate(data):
-    data[i] = d**odata[i]
-  return tensor(data, self.dtype, (self,)).view(self.shape.data)
+  flat  = self .storage.copy()
+  oflat = other.storage
+  for i,d in enumerate(flat): flat[i] = d**oflat[i]
+  
+  return tensor(flat, self.dtype, (self,), _Strg=flat.copy(),_Shape=[len(flat)]).view(self.shape.data)

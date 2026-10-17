@@ -1,4 +1,4 @@
-from tensor.main import tensor
+from   tensor.main import tensor
 
 def squeeze(self,dim=None) -> tensor:
   if isinstance(dim, tensor):

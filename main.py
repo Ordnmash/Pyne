@@ -1,6 +1,6 @@
 from tensor.main import tensor as ts
+
 from methods.storage import storage
-from dtypes import Float, Long, Bool
 from methods import totensor
 from methods.randn import randn, randNorm
 from methods import ints
@@ -9,9 +9,9 @@ from tensor.attr.strides import getStride
 class pyne:
   tensor  = ts
   storage = storage
-  Long    = Long
-  Float   = Float
-  Bool    = Bool
+  Long    = 'long'
+  Float   = 'float'
+  Bool    = 'bool'
   randint = totensor.randint
   arange  = totensor.arange
   randNorm= randNorm

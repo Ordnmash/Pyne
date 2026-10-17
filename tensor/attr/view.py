@@ -28,5 +28,5 @@ def view(self, *args) -> tensor:
   out.shape   = Size(shape, isshape=True)
   out.ndim    = len(shape)
   out.nelem   = self.nelem
-  out.data    = nest(self.storage, shape) # built once, here
+  out.data    = nest(self.storage, shape)
   return out

@@ -29,5 +29,5 @@ def stretch(x: tensor,shape: list) -> tensor:
     count += 1
     storage = istorage
   
-  storage=storage[0]
-  return tensor(storage,x.dtype, (x,))  
+  data = storage[0]
+  return tensor(data ,x.dtype, (x,)) # storage && shape are unknown  

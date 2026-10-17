@@ -1,5 +1,5 @@
+from createData import crData
 from tensor.represent import __repr__ as repr
-from tensor.createData import crData  as crd
 from tensor.attr.strides import strides
 
 class tensor:
@@ -8,14 +8,20 @@ class tensor:
   __repr__ = repr
   strides  = strides
 
-  def __init__(self, data, dtype='float', _prev=(),_Strg=None,_Shape=None):
+  def __init__(self, data, dtype='float', _prev=(),_Strg=None,_Shape=None, _crd=True):
+    """
+    Construct tensor with their attributes
+    * tensor accept mathematical datatypes including:
+    - Bool, - 'inf' as float
+    """
+    if data is None: raise ValueError(f"tensor doesn't support elements of NoneType!")
+    
     self.dtype   = dtype
-    self.data    = crd(data,self.dtype)
+    self.data    = crData(data,self.dtype) if _crd else data
     self.children= set(_prev)
     from main import pyne
     from size.Size import Size
-    print(f"shape passed? {bool(_Shape)}")
-    self.shape   = Size(self.data) if not _Shape else Size(_Shape,True)
+    self.shape   = Size(x=self.data, isshape=False) if not _Shape else Size(_Shape,True)
     self.ndim    = self.shape.ndim
     self.nelem   = self.shape.nelem
     self.storage = pyne.storage(self.data) if not _Strg else _Strg 
