@@ -5,7 +5,7 @@ from tensor.operations.compatExtend import compatAndExtend as cae
 
 def add(self, other: tensor) -> tensor:
   
-  other  = other if isinstance(other, tensor) else tensor(other, self.dtype, _Strg=other)
+  other  = other if isinstance(other, tensor) else tensor(other, self.dtype, _Strg=[other], _Shape=[])
   dtype  = 'float' if not self.dtype == 'long' and not other.dtype == 'long' else 'long'
   nshape = cae(self, other)
   

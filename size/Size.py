@@ -1,8 +1,5 @@
 class Size:
   def __init__(self, x:list, isshape=False):
-    print(x, 'x for Size')
-    if isinstance(x,type(None)): raise ValueError(f"cannot construct Size for NoneType!")
-    
     self.x    = x
     self.data = self.getShape() if not isshape else list(x)
     self.ndim = len(self.data)
@@ -15,8 +12,8 @@ class Size:
 
     if isinstance(self.x, (int, float)):return []
      
-    out = [len(self.x)]
-
+    try:out = [len(self.x)]
+    except TypeError: print(self.x, 'is self.x'); raise TypeError(f"errrrrrr")
     def iterate(data):
       for i in data:
         if type(i) == list:

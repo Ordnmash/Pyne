@@ -2,10 +2,10 @@ from tensor.main import tensor
 
 def Sum(self, dim=None, keepdim=False):
   if dim is None:
-    out = [sum(self.storage)]
+    flat = [sum(self.storage)]
     if keepdim: 
-          return tensor(out, self.dtype, (self,), _Strg=out.copy(), _Shape=[len(out)]).todim(self.ndim)
-    else: return tensor(out, self.dtype, (self,), _Strg=out.copy(), _Shape=[len(out)])
+          return tensor(flat, self.dtype, (self,), _Strg=flat.copy(), _Shape=[len(flat)]).todim(self.ndim)
+    else: return tensor(flat, self.dtype, (self,), _Strg=flat.copy(), _Shape=[len(flat)])
   
   if dim >= self.ndim:
     raise IndexError(f"tensor of {self.ndim}dims has no dim '{dim}'")
@@ -13,22 +13,21 @@ def Sum(self, dim=None, keepdim=False):
   outshape      = self.shape.data.copy()
   outshape[dim] = 1
 
-  out   = []
+  flat  = []
   step  = self.strides(dim)
   outer = 1
-  for k in outshape:
-    outer *= k
+  for k in outshape:outer *= k
 
   inner = self.shape.data[dim]
   base  = 0
 
   for o in range(outer):
     ihold = [self.storage[base + i * step] for i in range(inner)]
-    out.append(sum(ihold))
+    flat.append(sum(ihold))
     base += 1
 
     if (o + 1) % step == 0: # jump in memory when outer iterate reaches steps
       base += (inner * step) - step
 
-  outtens = tensor(out,self.dtype, (self,), _Strg=out.copy(), _Shape=[len(out)]).view(outshape)
+  outtens = tensor(flat,self.dtype, (self,), _Strg=flat.copy(), _Shape=[len(flat)]).view(outshape)
   return outtens if keepdim else outtens.squeeze(dim)
