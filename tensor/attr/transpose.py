@@ -29,7 +29,7 @@ def transpose(self, dim0, dim1) -> tensor:
     strides[dim1], strides[dim0]
   )
 
-  # Create tensor without calling __init__
+
   out = tensor.__new__(tensor)
 
   out.dtype = self.dtype
