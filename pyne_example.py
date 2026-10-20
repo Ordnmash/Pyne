@@ -1,3 +1,5 @@
+from main import pyne
+
 a = pyne.tensor([[2.,3.,1.,4.],[3.,2.,1.,4.]], requires_grad=True)
 b = pyne.tensor([2.,2.,3.,3.],                 requires_grad=True)
 c = a + b 

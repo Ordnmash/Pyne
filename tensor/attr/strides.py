@@ -1,19 +1,29 @@
-def strides(self, dim:int) -> int:
-  shape  = self.shape.data
-  stride = 1
-  if dim < 0:
-    return stride
-  for i in shape[dim+1:]:
-    stride*=i
-  return stride
+# tensor/attr/strides.py
 
-def getStride(shape:list, dim:int) -> int:
-    stride = 1
-    if dim < 0:
-      return stride
-    for i in shape[dim+1:]:
-      stride*=i
-    return stride  
+def getStrides(shape: list) -> tuple:
+  """Calculate contiguous strides from a shape."""
+
+  strides = [1] * len(shape)
+
+  for i in range(len(shape) - 2, -1, -1):
+    strides[i] = strides[i + 1] * shape[i + 1]
+
+  return tuple(strides)
+
+
+def strides(self, dim: int = None):
+  """Return the tensor's stored strides."""
+
+  if dim is None:
+    return self._strides
+
+  if not isinstance(dim, int):
+    raise TypeError("dimension must be an integer")
+
+  if not (-self.ndim <= dim < self.ndim):
+    raise IndexError(f"dimension {dim} out of range")
+
+  return self._strides[dim]
 
 def item(self):
   if self.nelem > 1:

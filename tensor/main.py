@@ -7,6 +7,7 @@ class tensor:
   """Global attributes for tensor object"""
   __repr__ = repr
   strides  = strides
+  _strides = strides
 
   def __init__(self, data, dtype='float', _prev=(),_Strg=None,_Shape=None, _crd=True):
     """
@@ -26,7 +27,6 @@ class tensor:
     self.nelem   = self.shape.nelem
     self.storage = pyne.storage(self.data) if not _Strg else _Strg 
     
-
 
 
 from tensor.attr.view import view
