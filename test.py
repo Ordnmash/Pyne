@@ -1,9 +1,7 @@
 from main import pyne
+import torch
 
-x = pyne.arange(0,12,1).view(4,3)
+x = pyne.arange(0,64,1).view(2,4,4,2)
 
-y = x.transpose(0,1)
-
-print(x.shape, y.shape,'\n')
-print(x,'\n')
-print(y)
+y = x @ x.view(4,2,2,4)
+print(y.shape)

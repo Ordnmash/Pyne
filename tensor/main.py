@@ -38,6 +38,7 @@ from tensor.attr.squeeze import squeeze
 from tensor.operations.mean import mean
 from tensor.operations.sqrt import sqrt
 from tensor.attr.transpose import transpose
+from tensor.operations.matmul import matmul
 from tensor.operations.std import std
 from tensor.operations.std import var
 from tensor.operations.add import add
@@ -59,6 +60,7 @@ tensor.__neg__ = neg
 tensor.__mul__ = mul
 tensor.__pow__ = pow
 tensor.__truediv__ = div
+tensor.__matmul__  = matmul
 tensor.sum         = Sum
 tensor.mean        = mean
 tensor.sqrt        = sqrt

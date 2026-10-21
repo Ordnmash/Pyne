@@ -1,6 +1,6 @@
 # tensor/attr/nest.py
 
-def nest(flat, shape, strides=None, offset=0):
+def nest(flat:list, shape:list, strides=None, offset=0) -> list[list[int]]:
 
   if strides is None:
     strides = [1] * len(shape)
