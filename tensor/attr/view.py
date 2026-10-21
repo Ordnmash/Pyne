@@ -1,7 +1,6 @@
-# view
 from tensor.main import tensor
 from tensor.attr.nest import nest
-from size.Size import Size
+
 
 def view(self, *args) -> tensor:
   
@@ -21,12 +20,5 @@ def view(self, *args) -> tensor:
   for s in shape: n *= s
   if n != self.nelem: raise ValueError(f"cannot view {self.shape} as {shape}")
 
-  out         = tensor.__new__(tensor)    # skip __init__: no crd, no re-flatten
-  out.dtype   = self.dtype
-  out.prev    = {self}
-  out.storage = self.storage              # same list object, not a copy
-  out.shape   = Size(shape, isshape=True)
-  out.ndim    = len(shape)
-  out.nelem   = self.nelem
-  out.data    = nest(self.storage, shape)
+  out = tensor(nest(self.storage, shape), self.dtype,_Strg=self.storage, _Shape=shape, _crd=False)
   return out

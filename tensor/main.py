@@ -6,8 +6,7 @@ class tensor:
   """   Tensor object aka Array object  """
   """Global attributes for tensor object"""
   __repr__ = repr
-  strides  = strides
-  _strides = strides
+
 
   def __init__(self, data, dtype='float', _prev=(),_Strg=None,_Shape=None, _crd=True):
     """
@@ -16,17 +15,20 @@ class tensor:
     - Bool, - 'inf' as float
     """
     if data is None: raise ValueError(f"tensor doesn't support elements of NoneType!")
+    from main import pyne
+    from size.Size import Size    
     
     self.dtype   = dtype
     self.data    = crData(data,self.dtype) if _crd else data
     self.children= set(_prev)
-    from main import pyne
-    from size.Size import Size
-    self.shape   = Size(x=self.data, isshape=False) if not _Shape else Size(_Shape,True)
-    self.ndim    = self.shape.ndim
-    self.nelem   = self.shape.nelem
-    self.storage = pyne.storage(self.data) if not _Strg else _Strg 
-    
+
+    self.shape    :Size  = Size(x=self.data, isshape=False) if _Shape is None else Size(_Shape,True)
+    self.ndim     :int   = self.shape.ndim
+    self.nelem    :int   = self.shape.nelem
+    self.storage  :list  = pyne.storage(self.data) if _Strg is None else _Strg 
+    self._strides :tuple = pyne.getStrides(self.shape.data)
+    self.strides  :int   = strides
+    self.offset   :int   = 0
 
 
 from tensor.attr.view import view
