@@ -10,6 +10,7 @@ def randn(shape: list|tuple) -> tensor:
   norm = (ts - ts.mean(-1, True)) / ts.std(-1, True)
   return norm
 
+"""used in nn Layers"""
 def randNorm(shape: tuple) -> tensor:
   a,b = -(shape[-1]**0.5), (shape[-1]**0.5)
   alld = 1
