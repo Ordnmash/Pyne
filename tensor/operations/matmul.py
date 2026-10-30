@@ -5,7 +5,7 @@ from itertools import product
 from math import prod
 
 
-def broadcast_shape(a, b):
+def broadcast_shape(a: list, b: list) -> list:
 
   result = []
 
