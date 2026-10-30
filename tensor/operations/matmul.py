@@ -29,7 +29,7 @@ def broadcast_shape(a: list, b: list) -> list:
   return list(reversed(result))
 
 
-def batch_index(coords, shape):
+def batch_index(coords: list, shape: list|None) -> int:
 
   if not shape:
     return 0
