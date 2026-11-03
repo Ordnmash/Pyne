@@ -1,5 +1,3 @@
-from tensor.main import tensor
-import dtypes
 from main import pyne
 
 class Linear:
