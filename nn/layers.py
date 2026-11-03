@@ -6,7 +6,7 @@ class Linear:
     self.weight = pyne.randNorm([fan_in, fan_out])
     self.bias   = pyne.zeros([fan_in, fan_out], dtype=dtypes.Float) if self.bias else None
 
-  def __call__(self, x):
+  def forward(self, x):
     out = x @ self.weight
     if self.bias is not None:
       out += self.bias
