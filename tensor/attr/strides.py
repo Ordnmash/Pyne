@@ -6,7 +6,6 @@ def getStrides(shape: list) -> tuple:
 
   return tuple(strides)
 
-
 def strides(self, dim: int = None) -> tuple:
   """Return the tensor's stored strides."""
 
