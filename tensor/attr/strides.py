@@ -1,8 +1,4 @@
-# tensor/attr/strides.py
-
 def getStrides(shape: list) -> tuple:
-  """Calculate contiguous strides from a shape."""
-
   strides = [1] * len(shape)
 
   for i in range(len(shape) - 2, -1, -1):
