@@ -10,8 +10,7 @@ def getStrides(shape: list) -> tuple:
 def strides(self, dim: int = None) -> tuple:
   """Return the tensor's stored strides."""
 
-  if dim is None:
-    return self._strides
+  if dim is None: return self._strides
 
   if not isinstance(dim, int):
     raise TypeError("dimension must be an integer")
