@@ -1,9 +1,9 @@
 class Size:
-  def __init__(self, x:list, isshape=False):
-    self.x    = x
-    self.data = self.getShape() if not isshape else list(x)
-    self.ndim = len(self.data)
-    self.nelem = self.getnelem()
+  def __init__(self, x:list, isshape:bool=False):
+    self.x:list    = x
+    self.data:list = self.getShape() if not isshape else list(x)
+    self.ndim:int  = len(self.data)
+    self.nelem:int = self.getnelem()
     
   def __repr__(self):
     return f"pyne.Size({self.data})"
