@@ -10,10 +10,14 @@ class Size:
   
   def getShape(self):
 
-    if isinstance(self.x, (int, float)):return []
+    if isinstance(self.x, (int, float)):
+      return []
      
-    try:out = [len(self.x)]
-    except TypeError: print(self.x, 'is self.x'); raise TypeError(f"errrrrrr")
+    try:
+      out = [len(self.x)]
+    except TypeError:
+      print(self.x, 'is self.x'); raise TypeError(f"errrrrrr")
+    
     def iterate(data):
       for i in data:
         if type(i) == list:
