@@ -5,8 +5,9 @@ def todim(self: tensor,dim: int) -> tensor:
     raise AttributeError(f"tensor.todim() expects 'int' argument but got '{dim}'")
   
   change = dim - self.ndim
-  if change <= 0: return self
-  out        =    self.data
+  if change <= 0: 
+    return self
+  out = self.data
   
   for _ in range(change): out = [out]
   
